@@ -5,28 +5,30 @@ require 'rubypython'
 require 'pathname'
 
 class DataInterp
-
 #This class performs a 2-dimensional cubic spline interpolation on a given dataset.
 #The interpolation is supported by Python(version 2.x) SciPy library and a Ruby-Python 
 #bridge is built using rubypython.
 #Please try the following commands to install these libraries: 
 # $: pip install numpy
 # $: pip install scipy
-# $: gem install rubypython 
+# $: gem install rubypython
+#Example:
+# interp=DataInterp.new(x,y,z)
+# aqi=interp.clac(i,j)
+# interp.stop
 
 	def initialize(longs,lats,aqis)
+	#This method creates a new DataInterp instance.
 	#longs -- an array of longitudes of all data points
 	#lats -- an array of latitudes of all data points
 	#aqis -- an array of AQIs(pollution levels) of all data points
 	#Note that at least 16 data points is needed to estimate the function.
-
+	
 		raise ArgumentError, "Arguments must have the same size" unless longs.size==lats.size and lats.size==aqis.size
 		raise ArgumentError, "At least 16 data points is required" unless longs.size>=16
-
-		startPy
-		interp=RubyPython.import('DataInterp')
-		interp.gen_func(longs,lats,aqis)
-		stopPy
+		@isRunning=false
+		start
+		@interp.gen_func(longs,lats,aqis)
 	end
 
 	def calc(longs,lats)
@@ -34,15 +36,11 @@ class DataInterp
 	#longs -- an array of longitudes of given locations.
 	#lats -- an array of latitudes of given locations.
 	#return -- an array of AQIs of given locations.
-    raise ArgumentError, "Arguments must have the same size" unless longs.size==lats.size
-    
-		startPy
-		interp=RubyPython.import('DataInterp')
-		aqis=interp.load_func(longs,lats).rubify
-		stopPy
+		raise RuntimeError,"Python interperter has been stopped" unless @isRunning
+		raise ArgumentError, "Arguments must have the same size" unless longs.size==lats.size
+		aqis=@interp.load_func(longs,lats).rubify
 		return aqis
 	end
-
 
 	private
 	def get_current_path
@@ -50,21 +48,29 @@ class DataInterp
 	end
 
 	private
-	def startPy
-		RubyPython.start
+	def start
+	#Start external Python interperter
+	#Note that this method is private to prevent segementation fault.
+		flag=RubyPython.start
+		raise RuntimeError,"Fail to start python interperter" unless flag
+		@isRunning=true
 		sys=RubyPython.import('sys')
 		sys.path.append(get_current_path)
 		os=RubyPython.import('os')
 		os.chdir(get_current_path)
+		@interp=RubyPython.import('DataInterp')
 	end
 	
-	private
-	def stopPy
-		RubyPython.stop
+	
+	def stop
+	#Stop external Python interperter
+	#Remember to stop Python interperter if the interpolation is no longer needed
+	#Due to high likelihood of segementation fault, you cannot restart the Python
+	#interperter anagin after stopped it.
+		flag=RubyPython.stop
+		raise RuntimeError,"Fail to stop python interperter" unless flag
+		@isRunning=false
 	end
-
+	
 end
-
-
-
 
