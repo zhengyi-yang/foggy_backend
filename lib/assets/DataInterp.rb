@@ -6,7 +6,7 @@ require 'pathname'
 
 class DataInterp
 
-#This class performs a 2 dimensional cubic spline interpolation on a given dataset.
+#This class performs a 2-dimensional cubic spline interpolation on a given dataset.
 #The interpolation is supported by Python(version 2.x) SciPy library and a Ruby-Python 
 #bridge is built using rubypython.
 #Please try the following commands to install these libraries: 
