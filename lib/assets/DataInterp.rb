@@ -34,7 +34,8 @@ class DataInterp
 	#longs -- an array of longitudes of given locations.
 	#lats -- an array of latitudes of given locations.
 	#return -- an array of AQIs of given locations.
-
+    raise ArgumentError, "Arguments must have the same size" unless longs.size==lats.size
+    
 		startPy
 		interp=RubyPython.import('DataInterp')
 		aqis=interp.load_func(longs,lats).rubify
