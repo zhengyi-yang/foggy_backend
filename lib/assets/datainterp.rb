@@ -47,7 +47,7 @@ class DataInterp
 	#Stop external Python interperter
 	#Remember to stop Python interperter if the interpolation is no longer needed
 	#Due to high likelihood of segementation fault, you cannot restart the Python
-	#interperter anagin after stopped it.
+	#interperter anagin after stopping it.
 		flag=RubyPython.stop
 		raise RuntimeError,"Fail to stop python interperter" unless flag
 		@isRunning=false
