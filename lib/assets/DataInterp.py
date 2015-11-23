@@ -18,7 +18,7 @@ def load_func(x,y):
     		f = pickle.load(input)
 	x=array(x,dtype=float64)
 	y=array(y,dtype=float64)
-	return list(f(x,y))
+	return f(x,y).tolist()
 
 
 
