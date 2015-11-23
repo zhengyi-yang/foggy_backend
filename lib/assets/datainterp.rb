@@ -31,36 +31,17 @@ class DataInterp
 		@interp.gen_func(longs,lats,aqis)
 	end
 
-	def calc(longs,lats)
+	def calc(longs,lats,isCoord=false)
 	#This method computes estimated AQIs of given locations.
 	#longs -- an array of longitudes of given locations.
 	#lats -- an array of latitudes of given locations.
+	#isCoord --true is longs and lats are axies
 	#return -- an array of AQIs of given locations.
 		raise RuntimeError,"Python interperter has been stopped" unless @isRunning
 		raise ArgumentError, "Arguments must have the same size" unless longs.size==lats.size
-		aqis=@interp.load_func(longs,lats).rubify
+		aqis=@interp.load_func(longs,lats,isCoord).to_a
 		return aqis
 	end
-
-	private
-	def get_current_path
-		return Pathname.new(File.dirname(__FILE__)).realpath.to_s
-	end
-
-	private
-	def start
-	#Start external Python interperter
-	#Note that this method is private to prevent segementation fault.
-		flag=RubyPython.start
-		raise RuntimeError,"Fail to start python interperter" unless flag
-		@isRunning=true
-		sys=RubyPython.import('sys')
-		sys.path.append(get_current_path)
-		os=RubyPython.import('os')
-		os.chdir(get_current_path)
-		@interp=RubyPython.import('DataInterp')
-	end
-	
 	
 	def stop
 	#Stop external Python interperter
@@ -71,6 +52,23 @@ class DataInterp
 		raise RuntimeError,"Fail to stop python interperter" unless flag
 		@isRunning=false
 	end
+
+	private
+	def get_current_path
+		return Pathname.new(File.dirname(__FILE__)).realpath.to_s
+	end
 	
+	def start
+	#Start external Python interperter
+	#Note that this method is private to prevent segementation fault.
+		flag=RubyPython.start
+		raise RuntimeError,"Fail to start python interperter" unless flag
+		@isRunning=true
+		sys=RubyPython.import('sys')
+		sys.path.append(get_current_path)
+		os=RubyPython.import('os')
+		os.chdir(get_current_path)
+		@interp=RubyPython.import('datainterp')
+	end
 end
 
