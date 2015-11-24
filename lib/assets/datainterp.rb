@@ -17,17 +17,21 @@ class DataInterp
 # aqi=interp.clac(i,j)
 # interp.stop
 
-	def initialize(longs,lats,aqis)
+	def initialize(longs=nil,lats=nil,aqis=nil)
 	#This method creates a new DataInterp instance.
 	#longs -- an array of longitudes of all data points
 	#lats -- an array of latitudes of all data points
 	#aqis -- an array of AQIs(pollution levels) of all data points
 	#Note that at least 16 data points is needed to estimate the function.
-	
+		@isRunning=false
+		if(longs==nil and lats==nil and aqis==nil)
+			warn('warning: initializing DataInterp with no parameters, latest function will be loaded.')
+			start
+			return
+		end
+		start
 		raise ArgumentError, "Arguments must have the same size" unless longs.size==lats.size and lats.size==aqis.size
 		raise ArgumentError, "At least 16 data points is required" unless longs.size>=16
-		@isRunning=false
-		start
 		@interp.gen_func(longs,lats,aqis)
 	end
 
@@ -35,7 +39,7 @@ class DataInterp
 	#This method computes estimated AQIs of given locations.
 	#longs -- an array of longitudes of given locations.
 	#lats -- an array of latitudes of given locations.
-	#isCoord --true is longs and lats are axies
+	#isCoord --true if longs and lats are axies
 	#return -- an array of AQIs of given locations.
 		raise RuntimeError,"Python interperter has been stopped" unless @isRunning
 		raise ArgumentError, "Arguments must have the same size" unless longs.size==lats.size
