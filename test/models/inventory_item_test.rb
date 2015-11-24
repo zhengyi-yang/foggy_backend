@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class RecordTest < ActiveSupport::TestCase
+class InventoryItemTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

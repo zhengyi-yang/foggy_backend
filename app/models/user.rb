@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_many :charachets
+  has_many :trees
   before_create :set_authentication_token
   validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true

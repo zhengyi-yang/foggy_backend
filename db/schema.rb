@@ -11,20 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151104124338) do
+ActiveRecord::Schema.define(version: 20151124153614) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "characters", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "namee"
-    t.string   "avatar_url"
-    t.integer  "health",     default: 100
-    t.integer  "awareness",  default: 0
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-  end
 
   create_table "friendships", force: :cascade do |t|
     t.integer "user_id"
@@ -34,16 +24,16 @@ ActiveRecord::Schema.define(version: 20151104124338) do
   add_index "friendships", ["friend_user_id", "user_id"], name: "index_friendships_on_friend_user_id_and_user_id", unique: true, using: :btree
   add_index "friendships", ["user_id", "friend_user_id"], name: "index_friendships_on_user_id_and_friend_user_id", unique: true, using: :btree
 
-  create_table "item_records", force: :cascade do |t|
-    t.integer  "character_id"
+  create_table "inventory_items", force: :cascade do |t|
+    t.integer  "user_id"
     t.integer  "item_id"
     t.integer  "quantity"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "item_records", ["character_id"], name: "index_item_records_on_character_id", using: :btree
-  add_index "item_records", ["item_id"], name: "index_item_records_on_item_id", using: :btree
+  add_index "inventory_items", ["item_id"], name: "index_inventory_items_on_item_id", using: :btree
+  add_index "inventory_items", ["user_id"], name: "index_inventory_items_on_user_id", using: :btree
 
   create_table "items", force: :cascade do |t|
     t.string   "name"
@@ -53,15 +43,15 @@ ActiveRecord::Schema.define(version: 20151104124338) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "records", force: :cascade do |t|
-    t.datetime "record_time"
-    t.integer  "health"
-    t.integer  "character_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+  create_table "trees", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.integer  "health",     default: 100
+    t.integer  "awareness",  default: 0
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "level",      default: 0
   end
-
-  add_index "records", ["character_id"], name: "index_records_on_character_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
@@ -72,7 +62,6 @@ ActiveRecord::Schema.define(version: 20151104124338) do
     t.datetime "updated_at",           null: false
   end
 
-  add_foreign_key "item_records", "characters"
-  add_foreign_key "item_records", "items"
-  add_foreign_key "records", "characters"
+  add_foreign_key "inventory_items", "items"
+  add_foreign_key "inventory_items", "trees", column: "user_id"
 end
