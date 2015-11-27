@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  site_code: 'Code1'
+  latitude: 
+  longitude: 
+  index: 1
+
+two:
+  site_code: 'Code2'
+  latitude: 
+  longitude: 
+  index: 1
