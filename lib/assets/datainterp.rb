@@ -30,6 +30,11 @@ class DataInterp
 			return
 		end
 		start
+		update(longs,lats,aqis)
+	end
+	
+	def update(longs,lats,aqis)
+	#Update all data points
 		raise ArgumentError, "Arguments must have the same size" unless longs.size==lats.size and lats.size==aqis.size
 		raise ArgumentError, "At least 16 data points is required" unless longs.size>=16
 		@interp.gen_func(longs,lats,aqis)
