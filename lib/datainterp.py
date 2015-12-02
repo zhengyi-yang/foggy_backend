@@ -1,7 +1,7 @@
 #Author: Zhengyi Yang
 #Created on Fri 20 Nov, 2015
 
-from numpy import array,float64,meshgrid
+from numpy import array,float64,meshgrid,isnan
 from scipy.interpolate import CloughTocher2DInterpolator
 import pickle
 
@@ -11,6 +11,7 @@ def gen_func(x,y,z):
 	f = CloughTocher2DInterpolator(points,z)#Clough-Tocher method
 	with open('estimated_func.pkl', 'wb') as output:
     		pickle.dump(f, output, pickle.HIGHEST_PROTOCOL)
+    	#make_graph(x,y,z)
 
 def load_func(x,y,isCoord=False):
 	with open('estimated_func.pkl', 'rb') as input:
@@ -22,7 +23,8 @@ def load_func(x,y,isCoord=False):
                 ans=f(xx,yy)
 	else:
                 ans=f(x,y)
-	return ans.tolist()
+	ans=ans.tolist()
+	return [x if not isnan(x) else 0 for x in ans]
 
 '''
 def make_graph(lon=None,lat=None,aqi=None):
