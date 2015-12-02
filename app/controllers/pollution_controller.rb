@@ -1,0 +1,3 @@
+class PollutionController < ApplicationController
+
+end
