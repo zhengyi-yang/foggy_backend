@@ -1,102 +1,103 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-one:
+
+BG1:
   site_code: "BG1"
   latitude: 51.563752
   longitude: 0.177891
   index: 2
 
-two:
+BG2:
   site_code: "BG2"
   latitude: 51.529389
   longitude: 0.132857
   index: 2
 
-three:
+BQ5:
   site_code: "BQ5"
   latitude: 51.4781935083933
   longitude: 0.187404883999095
   index: 1
 
-four:
+BQ6:
   site_code: "BQ6"
   latitude: 51.477670796298
   longitude: 0.190836225974902
   index: 1
 
-five:
+BQ7:
   site_code: "BQ7"
   latitude: 51.4946486813055
   longitude: 0.137279111232178
   index: 3
 
-six:
-  site_code: "BQ8"
-  latitude: 51.4946486813055
-  longitude: 0.137279111232178
-  index: 2
-
-seven:
+BX0:
   site_code: "BX0"
   latitude: 51.4906102082147
   longitude: 0.158914493927518
   index: 1
 
-eight:
+BX1:
   site_code: "BX1"
   latitude: 51.4659832746662
   longitude: 0.184877126994369
   index: 3
 
-nine:
-  site_code: "BX2"
-  latitude: 51.4906102082147
-  longitude: 0.158914493927518
-  index: 2
-
-ten:
-  site_code: "BX9"
-  latitude: 51.4659832746662
-  longitude: 0.184877126994369
-  index: 1
-
-eleven:
+GB0:
   site_code: "GB0"
   latitude: 51.4563
   longitude: 0.085606
   index: 2
 
-twelve:
-  site_code: "GB6"
-  latitude: 51.4563
-  longitude: 0.085606
-  index: 3
-
-thirteen:
+BT4:
   site_code: "BT4"
   latitude: 51.552476
   longitude: -0.258089
   index: 3
 
-fourteen:
+BT5:
   site_code: "BT5"
   latitude: 51.552656
   longitude: -0.248774
   index: 1
 
-fifteen:
+BT6:
   site_code: "BT6"
   latitude: 51.537799
   longitude: -0.247793
   index: 3
 
-sixteen:
+BL0:
   site_code: "BL0"
   latitude: 51.522287
   longitude: -0.125848
   index: 3
 
-seventeen:
+CD1:
   site_code: "CD1"
   latitude: 51.544219
   longitude: -0.175284
   index: 3
+
+CD3:
+ site_code: "CD3"
+ latitude: 51.515532
+ longitude: -0.127027
+ index: 2
+
+CD9: 
+ site_code: "CD9"
+ latitude: 51.5277066194645
+ longitude: -0.129053205282516
+ index: 2
+
+IM1: 
+ site_code: "IM1"
+ latitude: 51.5173675146177
+ longitude: -0.1201947113171
+ index: 2
+
+CT2:
+ site_code: "CT2"
+ latitude: 51.5145253362314
+ longitude: -0.104515626337876
+ index: 1

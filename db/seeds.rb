@@ -16,7 +16,9 @@ def updatePollution(site)
   elsif(species.class == Hash)
     pollution.index = species['@AirQualityIndex'].to_f + 1
   end
-  pollution.save!
+  if Pollution.where(latitude: pollution.latitude, longitude: pollution.longitude).size == 0
+    pollution.save!
+  end
 end
 
 def fetchData(host)
