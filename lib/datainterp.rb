@@ -6,7 +6,7 @@ require 'rubypython'
 require 'pathname'
 
 class DataInterp
-#This class performs a 2-dimensional cubic spline interpolation on a given dataset.
+#This class performs a 2-dimensional Clough-Tocher interpolation on a given dataset.
 #The interpolation is supported by Python(version 2.x) SciPy library and a Ruby-Python 
 #bridge is built using rubypython.
 #Please try the following commands to install these libraries: 
@@ -25,7 +25,6 @@ class DataInterp
   #longs -- an array of longitudes of all data points
   #lats -- an array of latitudes of all data points
   #aqis -- an array of AQIs(pollution levels) of all data points
-  #Note that at least 16 data points is needed to estimate the function.
     @isRunning=false
     pollution = Pollution.all
     if(pollution==nil)
@@ -37,10 +36,7 @@ class DataInterp
     update(pollution)
   end
   
-  def update(pollution)
-  #Update all data points
-    # raise ArgumentError, "Arguments must have the same size" unless longs.size==lats.size and lats.size==aqis.size
-    raise ArgumentError, "At least 16 data points is required" unless pollution.size>=16
+  def update(pollution)#Update all data points
     longitudes = pollution.map {|p| p.longitude}
     latitudes = pollution.map {|p| p.latitude}
     indexs = pollution.map {|p| p.index}
@@ -55,7 +51,7 @@ class DataInterp
   #return -- an array of AQIs of given locations.
     raise RuntimeError,"Python interperter has been stopped" unless @isRunning
     raise ArgumentError, "Arguments must have the same size" unless longs.size==lats.size
-    aqis=@interp.load_func(longs,lats,isCoord).to_a
+    aqis=@interp.load_func(longs,lats,isCoord).rubify
     return aqis
   end
   
