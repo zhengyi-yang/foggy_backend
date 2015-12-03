@@ -6,7 +6,7 @@ class PollutionController < ApplicationController
       head 400
     else
       datainterp = DataInterp.instance
-      result = datainterp.calc([params[:lat]], [params[:long]], true)[0].to_s
+      result = datainterp.calc(params[:long], params[:lat]).to_s
       pollution = {lat: params[:lat], long: params[:long], index: result}
       render json: pollution
     end

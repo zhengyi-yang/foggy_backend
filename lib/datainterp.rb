@@ -40,6 +40,8 @@ class DataInterp
     longitudes = pollution.map {|p| p.longitude}
     latitudes = pollution.map {|p| p.latitude}
     indexs = pollution.map {|p| p.index}
+    # print longitudes
+    # print latitudes
     @interp.gen_func(longitudes, latitudes, indexs)
   end
 
@@ -50,9 +52,13 @@ class DataInterp
   #isCoord --true if longs and lats are axies
   #return -- an array of AQIs of given locations.
     raise RuntimeError,"Python interperter has been stopped" unless @isRunning
-    raise ArgumentError, "Arguments must have the same size" unless longs.size==lats.size
+    # raise ArgumentError, "Arguments must have the same size" unless longs.size==lats.size
     aqis=@interp.load_func(longs,lats,isCoord).rubify
-    return aqis
+    if aqis.class == Array
+      return aqis.map {|n| n.nan? ? 0 : n.round}
+    end
+    return 0 if aqis.nan?
+    return aqis.round
   end
   
   def stop
