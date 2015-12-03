@@ -11,7 +11,6 @@ def gen_func(x,y,z):
     f = CloughTocher2DInterpolator(points,z)#Clough-Tocher method
     with open('estimated_func.pkl', 'wb') as output:
         pickle.dump(f, output, pickle.HIGHEST_PROTOCOL)
-    #make_graph(x,y,z)
 
 def load_func(x,y,isCoord=False):
     with open('estimated_func.pkl', 'rb') as input:
@@ -21,12 +20,10 @@ def load_func(x,y,isCoord=False):
     if isCoord:
         xx,yy=meshgrid(x,y)
         ans=f(xx,yy)
-        # print 'Ans:'
-        # print ans
     else:
         ans=f(x,y)
     ans=ans.tolist()
-    return [x if not isnan(x) else 0 for x in ans]
+    return ans
 
 '''
 def make_graph(lon=None,lat=None,aqi=None):
