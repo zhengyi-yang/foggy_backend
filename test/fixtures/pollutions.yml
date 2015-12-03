@@ -3,100 +3,100 @@ one:
   site_code: "BG1"
   latitude: 51.563752
   longitude: 0.177891
-  index: 1
+  index: 2
 
 two:
   site_code: "BG2"
   latitude: 51.529389
   longitude: 0.132857
-  index: 1
+  index: 2
 
 three:
   site_code: "BQ5"
   latitude: 51.4781935083933
   longitude: 0.187404883999095
-  index: 0
+  index: 1
 
 four:
   site_code: "BQ6"
   latitude: 51.477670796298
   longitude: 0.190836225974902
-  index: 0
+  index: 1
 
 five:
   site_code: "BQ7"
   latitude: 51.4946486813055
   longitude: 0.137279111232178
-  index: 2
+  index: 3
 
 six:
   site_code: "BQ8"
   latitude: 51.4946486813055
   longitude: 0.137279111232178
-  index: 1
+  index: 2
 
 seven:
   site_code: "BX0"
   latitude: 51.4906102082147
   longitude: 0.158914493927518
-  index: 0
+  index: 1
 
 eight:
   site_code: "BX1"
   latitude: 51.4659832746662
   longitude: 0.184877126994369
-  index: 2
+  index: 3
 
 nine:
   site_code: "BX2"
   latitude: 51.4906102082147
   longitude: 0.158914493927518
-  index: 1
+  index: 2
 
 ten:
   site_code: "BX9"
   latitude: 51.4659832746662
   longitude: 0.184877126994369
-  index: 0
+  index: 1
 
 eleven:
   site_code: "GB0"
   latitude: 51.4563
   longitude: 0.085606
-  index: 1
+  index: 2
 
 twelve:
   site_code: "GB6"
   latitude: 51.4563
   longitude: 0.085606
-  index: 2
+  index: 3
 
 thirteen:
   site_code: "BT4"
   latitude: 51.552476
   longitude: -0.258089
-  index: 2
+  index: 3
 
 fourteen:
   site_code: "BT5"
   latitude: 51.552656
   longitude: -0.248774
-  index: 0
+  index: 1
 
 fifteen:
   site_code: "BT6"
   latitude: 51.537799
   longitude: -0.247793
-  index: 2
+  index: 3
 
 sixteen:
   site_code: "BL0"
   latitude: 51.522287
   longitude: -0.125848
-  index: 2
+  index: 3
 
 seventeen:
   site_code: "CD1"
   latitude: 51.544219
   longitude: -0.175284
-  index: 2
+  index: 3

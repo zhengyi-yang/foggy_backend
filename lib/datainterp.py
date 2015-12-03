@@ -6,25 +6,27 @@ from scipy.interpolate import CloughTocher2DInterpolator
 import pickle
 
 def gen_func(x,y,z):
-        points=array(zip(x,y),dtype=float64)
-        z=array(z,dtype=float64)
-	f = CloughTocher2DInterpolator(points,z)#Clough-Tocher method
-	with open('estimated_func.pkl', 'wb') as output:
-    		pickle.dump(f, output, pickle.HIGHEST_PROTOCOL)
-    	#make_graph(x,y,z)
+    points=array(zip(x,y),dtype=float64)
+    z=array(z,dtype=float64)
+    f = CloughTocher2DInterpolator(points,z)#Clough-Tocher method
+    with open('estimated_func.pkl', 'wb') as output:
+        pickle.dump(f, output, pickle.HIGHEST_PROTOCOL)
+    #make_graph(x,y,z)
 
 def load_func(x,y,isCoord=False):
-	with open('estimated_func.pkl', 'rb') as input:
-    		f = pickle.load(input)
-	x=array(x,dtype=float64)
-	y=array(y,dtype=float64)
-	if isCoord:
-		xx,yy=meshgrid(x,y)
-                ans=f(xx,yy)
-	else:
-                ans=f(x,y)
-	ans=ans.tolist()
-	return [x if not isnan(x) else 0 for x in ans]
+    with open('estimated_func.pkl', 'rb') as input:
+        f = pickle.load(input)
+    x=array(x,dtype=float64)
+    y=array(y,dtype=float64)
+    if isCoord:
+        xx,yy=meshgrid(x,y)
+        ans=f(xx,yy)
+        # print 'Ans:'
+        # print ans
+    else:
+        ans=f(x,y)
+    ans=ans.tolist()
+    return [x if not isnan(x) else 0 for x in ans]
 
 '''
 def make_graph(lon=None,lat=None,aqi=None):

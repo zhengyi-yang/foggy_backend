@@ -14,7 +14,7 @@ def updatePollution(site)
   if(species.class == Array)
     pollution.index = species.map {|specie| specie['@AirQualityIndex']}.max
   elsif(species.class == Hash)
-    pollution.index =species['@AirQualityIndex']
+    pollution.index = species['@AirQualityIndex'].to_f + 1
   end
   pollution.save!
 end
