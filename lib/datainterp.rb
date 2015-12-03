@@ -38,7 +38,6 @@ class DataInterp
   end
   
   def update(pollution)
-    puts pollution.size
   #Update all data points
     # raise ArgumentError, "Arguments must have the same size" unless longs.size==lats.size and lats.size==aqis.size
     raise ArgumentError, "At least 16 data points is required" unless pollution.size>=16

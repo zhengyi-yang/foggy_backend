@@ -3,9 +3,9 @@ require 'datainterp'
 
 class InterpolationTest < ActiveSupport::TestCase
 
-  test 'getData' do  
+  test 'getData' do
     datainterp = DataInterp.instance
-    result = datainterp.calc([51.588918], [-0.059104], true)
-    puts result
+    result = datainterp.calc([51.552476], [-0.258089], true)
+    assert_equal(2, result[0])
   end
 end
