@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   get 'pollution' => 'pollution#get_pollution'
 
+  resource :user, except: [:new, :edit]
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

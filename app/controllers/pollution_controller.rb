@@ -3,7 +3,7 @@ class PollutionController < ApplicationController
 
   def get_pollution
     if !params[:lat] or !params[:long]
-      head 400
+      head :unprocessable_entity
     else
       datainterp = DataInterp.instance
       result = datainterp.calc(params[:long], params[:lat]).to_s

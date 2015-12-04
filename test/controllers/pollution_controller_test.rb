@@ -9,14 +9,14 @@ class PollutionControllerTest < ActionController::TestCase
     assert_not_nil result['index']
   end
 
-  test "should get 400 with incomplete request" do
+  test "should get unprocessable_entity with incomplete request" do
     get :get_pollution, {long: 0}
-    assert_response :bad_request
+    assert_response :unprocessable_entity
 
     get :get_pollution, {lat: 0}
-    assert_response :bad_request
+    assert_response :unprocessable_entity
 
     get :get_pollution
-    assert_response :bad_request
+    assert_response :unprocessable_entity
   end
 end
