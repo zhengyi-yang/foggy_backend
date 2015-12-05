@@ -11,12 +11,12 @@ Consider using downloaded local data instead of downloading it from a server - m
 
 
 
-import cProfile
+# import cProfile
 import datainterp
 import xml.sax
 import copy
 from scipy.interpolate import interp1d
-from matplotlib import pyplot as plt
+# from matplotlib import pyplot as plt
 from math import radians, sin, cos, sqrt, asin
 import numpy as np
 import networkx
@@ -250,27 +250,25 @@ def getnode(G,lat,lon):
 
 
 def routepath(lat1,lon1,lat2,lon2,tolerance=0.02,factor=1000):
-
-
     G=read_osm(download_osm(round(min(lon1,lon2)-tolerance,2),round(min(lat1,lat2)-tolerance,2),round(max(lon1,lon2)+tolerance,2),round(max(lat1,lat2)+tolerance,2)),factor)
     startnode = getnode(G,lat1,lon1)[0]
-    print "startnode:",startnode
+    # print "startnode:",startnode
     endnode = getnode(G,lat2,lon2)[0]
-    print "endnode:",endnode
+    # print "endnode:",endnode
 
 ###
 #    for n in G:
 #        print n
 #    print "path nodes:"
     pathnodes =networkx.dijkstra_path(G, startnode,endnode)
-    path = [G.node[n]['data'].lat for n in pathnodes], [G.node[n]['data'].lon for n in pathnodes]
-    print path
+    path = zip([G.node[n]['data'].lat for n in pathnodes], [G.node[n]['data'].lon for n in pathnodes])
+    # print path
 
-    fig, ax = plt.subplots()
-    ax.plot([G.node[n]['data'].lat for n in pathnodes], [G.node[n]['data'].lon for n in pathnodes], '-')
-    ax.scatter([G.node[n]['data'].lat for n in G], [G.node[n]['data'].lon for n in G], s=50)
-    ax.set_aspect('equal')
-    plt.show()
+    # fig, ax = plt.subplots()
+    # ax.plot([G.node[n]['data'].lat for n in pathnodes], [G.node[n]['data'].lon for n in pathnodes], '-')
+    # ax.scatter([G.node[n]['data'].lat for n in G], [G.node[n]['data'].lon for n in G], s=50)
+    # ax.set_aspect('equal')
+    # plt.show()
 
     return path #ordered list of nodes to be visited in order, forming a path
     #print [G.node[n]['data'].lat for n in pathnodes], [G.node[n]['data'].lon for n in pathnodes]
@@ -286,7 +284,8 @@ def routepath(lat1,lon1,lat2,lon2,tolerance=0.02,factor=1000):
     #plt.plot([G.node[n]['data'].lat for n in G], [G.node[n]['data'].lon for n in G], ',')
     #plt.show()
 
-
-cProfile.run('routepath(49.965,-5.215,49.961,-5.201,0.01,500)', sort=1)
+# path = routepath(49.965,-5.215,49.961,-5.201,0.01,500)
+# print path
+# cProfile.run('routepath(49.965,-5.215,49.961,-5.201,0.01,500)', sort=1)
 #high tolerance = look more area, low tolerance = only look at the area between the start and end points.
 #high factor = more accurate pollution weight for each route but longer time to run...experiment to find out good values for factor...default value is 1000

@@ -22,5 +22,8 @@ module Foggy
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+    config.before_initialize do
+        raise RuntimeError,"Fail to start python interperter" unless RubyPython.start
+    end
   end
 end
