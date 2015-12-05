@@ -1,15 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user_id: 1
+  id: 111
+  user_id: 123
   health: 1
   awareness: 1
   level: 1
   name: "Tree1"
 
 two:
-  user_id: 1
-  health: 1
-  awareness: 1
-  level: 1
+  id: 222
+  user_id: 123
+  health: 2
+  awareness: 2
+  level: 2
   name: "Tree2"

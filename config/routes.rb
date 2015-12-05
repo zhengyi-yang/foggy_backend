@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   resource :user, except: [:new, :edit]
 
+  resources :trees, except: [:new, :edit]
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
