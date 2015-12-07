@@ -22,6 +22,8 @@ class InterpolationTest < ActiveSupport::TestCase
     result = datainterp.calc(0.18487713, 51.46598327)
     # puts result
     assert_equal(3, result)
+    result = datainterp.calc(-0.05931229512187804,51.50565588199999)
+    assert_operator(0, :<=, result)
   end
 
   test 'getDataArray' do

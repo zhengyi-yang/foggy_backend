@@ -58,7 +58,7 @@ class DataInterp
       return aqis.map {|n| n.nan? ? 0 : n.round}
     end
     return 0 if aqis.nan?
-    return aqis.round
+    return aqis.round.abs
   end
   
   def stop
