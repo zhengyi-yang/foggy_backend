@@ -80,6 +80,7 @@ class DataInterp
   #Start external Python interperter
   #Note that this method is private to prevent segementation fault.
     # flag=RubyPython.start
+    raise RuntimeError,"Fail to start python interperter" unless RubyPython.start
     @isRunning=true
     sys=RubyPython.import('sys')
     sys.path.append(get_current_path)

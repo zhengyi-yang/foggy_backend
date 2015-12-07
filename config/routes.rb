@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   get 'pollution' => 'pollution#get_pollution'
 
-  get 'route' => 'route#get_route'
+  # get 'route' => 'route#get_route'
 
   resource :user, except: [:new, :edit]
 
